@@ -10,9 +10,10 @@
  *   - add each card's HTML to the page
  */
 
-$(function(){
-	
-	let movesCount=0, movimento;
+$(function (){
+	'use strict';
+
+	let movesCount=0, movimento = 0;
 	const openCard=[];
 	const matchCard = [];
 	let timerClock;
@@ -20,10 +21,14 @@ $(function(){
 	let secs = $('.seg'); 
 	let mins = $('.min');
 
+	let testId= [];
+
 	const deckCartas = $('.deck');
 	//armazendando todas as cartas em um array
-  	const cards = ['fa fa-paper-plane-o','fa fa-anchor','fa fa-diamond','fa fa-bolt','fa fa-cube', 'fa fa-anchor','fa fa-leaf','fa fa-bicycle','fa fa-diamond','fa fa-bomb','fa fa-leaf','fa fa-bomb','fa fa-bolt','fa fa-bicycle','fa fa-paper-plane-o','fa fa-cube'];
-      
+    let deck = ['fa fa-paper-plane-o','fa fa-diamond','fa fa-anchor','fa fa-leaf','fa fa-bomb','fa fa-bolt','fa fa-bicycle','fa fa-cube'];
+    //utilizando a funcao spread syntax para a repeticao de cartas
+    let cards = [...deck,...deck];
+
     startGame();
 
   	//comecar o jogo assim que carregar a pagina
@@ -31,11 +36,13 @@ $(function(){
   		//chama a funcao para gerar o grid de cartas
 		gridCartas();
 
-  		let card = $('.card');
+  		let card = $('.card');	
   		//Zerar os movimentos
+  		movesCount=0
 		movimento = 0;
 		$('.moves').html(movimento);
-		
+		//zerar o array após reiniciar o jogo.
+		openCard.length = 0;
   		//Chamada para iniciar o tempo de jogo
   		startTimer();
   		//Funcao para abrir as cartas
@@ -61,26 +68,34 @@ $(function(){
 		        minutos=0;
 		        horas++;
 		    }
-	     }, 1000);
+	     }, 1000); 
 	};
-
 
 	//Abrir as cartas para verificacao e envia para a soma dos movimentos
 	function abrirCartas(card){
 		card.on('click', function(){
+		 
 				if(openCard.length === 1){
+					//teste de click na mesma carta
+					testId.push($(this).attr('id'));
+					if(testId[0] === testId[1]){
+						testId.splice(1);
+						return;
+					};//fim teste
+
+				    testId=[];
 					$(this).addClass('open show');
 					openCard.push($(this));
 					movesCounter();
 					verificarCarta($(this), openCard[0]);
-				}else{
+				}else {
+					testId.push($(this).attr('id'));
 					$(this).addClass('open show');   //$(this).html();
 					openCard.push($(this));
 				}
 		});
 	};
-	
- 		
+
  	//Verifica se as cartas sao iguais ou não.	
 	function verificarCarta(cartaB, cartaA){  
 		//alert("entrou na funcao3"+ cartaB.html()+" - "+cartaA.html());
@@ -94,12 +109,11 @@ $(function(){
 		 	setTimeout(function() {
 			cartaB.removeClass('open show');
 			cartaA.removeClass('open show');
-			}, 1000);
+			}, 300);
 			openCard.length = 0;
 		 }
 		
 	};
-
 
 	//Verifica o jogo para executar o termino do mesmo
 	function verificarJogo(){
@@ -154,6 +168,7 @@ $(function(){
 	        const lista = document.createElement("li");
 	        const icone = document.createElement("i");
 	        lista.classList.add("card");
+            lista.id = i;
 	        icone.className = cards[i]; 
 	        lista.append(icone); 
 	        deckCartas.append(lista);
