@@ -1,19 +1,12 @@
 # Jogo de Memória
 
-## Table of Contents
-
-* [Instruções](#instruções)
-* [Contribuições](#contribuições)
-
 ## Instruções de como jogar
 
 ### Baixar o jogo
 1. Download ou clone para o repositório de sua máquina.
 2. Abra o index.html em seu navegador.
 ### Jogar online
-1. Utilize este link para jogar online, [aqui](https://#].
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+1. Utilize este link para jogar online, [aqui](https://fabianomtlopes.github.io/jogoMemoria/).
 
 ## Regras do jogo
 
@@ -27,4 +20,4 @@ For specific, detailed instructions, look at the project instructions in the [Ud
 ### Boa Sorte.
 This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+
