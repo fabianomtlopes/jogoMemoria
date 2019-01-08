@@ -38,7 +38,7 @@ $(function (){
 
   		let card = $('.card');	
   		//Zerar os movimentos
-  		movesCount=0
+  		movesCount=0;
 		movimento = 0;
 		$('.moves').html(movimento);
 		//zerar o array após reiniciar o jogo.
